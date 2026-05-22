@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCast | Simple Weather</title>
+    <style>
+        :root {
+            --primary: #4a90e2;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .weather-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            flex-grow: 1;
+        }
+        button {
+            padding: 10px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey track */
+            border-top: 16px solid #3498db; /* Blue spinning part */
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            animation: spin 2s linear infinite;
+            /* Center the loader on the page */
+            position: absolute;
+            top: 40%;
+            left: 53%;
+            margin-top: -60px; /* Half of height */
+            margin-left: -60px;
+            }
+
+            @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hide-loader {
+            display: none;
+        }
+        
+        .weather-info { display: none; } /* Hidden until data is fetched */
+        .temp { font-size: 3rem; font-weight: bold; margin: 10px 0; }
+        .city { font-size: 1.5rem; color: var(--dark); }
+        .desc { text-transform: capitalize; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="loader" id="loader" style="display: none;"></div>
+
+    <div class="weather-card">
+
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Enter city name...">
+            <button id="search-btn">Search</button>
+        </div>
+
+        <div id="weather-display" class="weather-info">
+            <div id="city-name" class="city">City Name</div>
+            <img id="weather-icon" src="" alt="weather icon">
+            <div id="temperature" class="temp"></div>
+            <div id="description" class="desc">Sunny</div>
+            <div class="details">
+                <p>Humidity: <span id="humidity">--</span>%</p>
+            </div>
+        </div>
+
+        <div id="error-message" style="color: red; display: none;">
+            City not found. Please try again.
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
